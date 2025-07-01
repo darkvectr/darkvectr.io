@@ -46,13 +46,28 @@ module.exports = {
         gradient: {
           '0%, 100%': { 'background-position': '0% 50%' },
           '50%': { 'background-position': '100% 50%' }
+        },
+        typewriter: {
+          '0%': { width: '0' },
+          '100%': { width: '100%' }
+        },
+        blink: {
+          '0%, 100%': { 'border-right-color': 'transparent' },
+          '50%': { 'border-right-color': 'currentColor' }
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' }
         }
       },
       animation: {
         fadeIn: 'fadeIn 0.8s ease-out forwards',
         slideInUp: 'slideInUp 0.8s ease-out forwards',
         slideInDown: 'slideInDown 0.8s ease-out forwards',
-        gradient: 'gradient 8s ease infinite'
+        gradient: 'gradient 8s ease infinite',
+        typewriter: 'typewriter 3s steps(30) forwards',
+        blink: 'blink 1s step-end infinite',
+        float: 'float 6s ease-in-out infinite'
       }
     }
   },

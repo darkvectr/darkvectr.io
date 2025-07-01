@@ -56,7 +56,8 @@ import Footer from '../components/Footer.astro';
         const observer = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('animate-fadeIn');
+              const animation = entry.target.dataset.animation || 'fadeIn';
+              entry.target.classList.add(`animate-${animation}`);
               obs.unobserve(entry.target);
             }
           });
