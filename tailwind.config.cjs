@@ -51,6 +51,14 @@ module.exports = {
           '0%': { opacity: '0', transform: 'translateY(-20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' }
         },
+        slideInLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' }
+        },
+        slideInRight: {
+          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' }
+        },
         gradient: {
           '0%, 100%': { 'background-position': '0% 50%' },
           '50%': { 'background-position': '100% 50%' }
@@ -73,6 +81,8 @@ module.exports = {
         fadeIn: 'fadeIn 0.8s ease-out forwards',
         slideInUp: 'slideInUp 0.8s ease-out forwards',
         slideInDown: 'slideInDown 0.8s ease-out forwards',
+        slideInLeft: 'slideInLeft 0.8s ease-out forwards',
+        slideInRight: 'slideInRight 0.8s ease-out forwards',
         gradient: 'gradient 8s ease infinite',
         typewriter: 'typewriter 3s steps(30) forwards',
         blink: 'blink 1s step-end infinite',
