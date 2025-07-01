@@ -11,6 +11,10 @@ import Footer from '../components/Footer.astro';
     <meta name="theme-color" content="#0d1117" />
     <title>DarkVectr | Cybersecurity Consulting</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    />
     <script>
       if (
         localStorage.theme === "dark" ||
@@ -51,20 +55,67 @@ import Footer from '../components/Footer.astro';
       });
       updateIcons();
     </script>
+    <!-- Particle background and tilt effects -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        // Scroll-reveal with staggered delays
         const observer = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const animation = entry.target.dataset.animation || 'fadeIn';
+              const delay = entry.target.dataset.delay || '0';
+              entry.target.style.animationDelay = `${delay}ms`;
               entry.target.classList.add(`animate-${animation}`);
               obs.unobserve(entry.target);
             }
           });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => {
+        document.querySelectorAll('.reveal').forEach((el, i) => {
+          el.dataset.delay = i * 150;
           observer.observe(el);
         });
+
+        // Initialize tilt on cards
+        if (window.VanillaTilt) {
+          VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            'max-glare': 0.3
+          });
+        }
+
+        // Initialize particles background
+        if (window.tsParticles) {
+          tsParticles.load('tsparticles', {
+            fpsLimit: 60,
+            particles: {
+              number: { value: 50 },
+              color: { value: '#58a6ff' },
+              shape: { type: 'circle' },
+              opacity: { value: 0.2 },
+              size: { value: { min: 1, max: 3 } },
+              move: { enable: true, speed: 1, outModes: 'out' },
+              links: { enable: true, distance: 150, color: '#58a6ff', opacity: 0.1, width: 1 }
+            },
+            interactivity: {
+              detectsOn: 'canvas',
+              events: {
+                onHover: { enable: true, mode: 'grab' },
+                onClick: { enable: true, mode: 'push' },
+                resize: true
+              },
+              modes: {
+                grab: { distance: 200, links: { opacity: 0.2 } },
+                push: { quantity: 4 }
+              }
+            },
+            detectRetina: true,
+            background: { color: 'transparent' }
+          });
+        }
       });
     </script>
   </body>

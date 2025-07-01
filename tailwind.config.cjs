@@ -3,6 +3,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      backgroundSize: {
+        '200%': '200% 200%',
+      },
       colors: {
         background: "#0d1117",
         surface: "#161b22",
@@ -13,6 +16,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          'Inter',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
@@ -31,6 +35,10 @@ module.exports = {
         ]
       },
       keyframes: {
+        gradientText: {
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' }
@@ -61,6 +69,7 @@ module.exports = {
         }
       },
       animation: {
+        gradientText: 'gradientText 5s ease infinite',
         fadeIn: 'fadeIn 0.8s ease-out forwards',
         slideInUp: 'slideInUp 0.8s ease-out forwards',
         slideInDown: 'slideInDown 0.8s ease-out forwards',
