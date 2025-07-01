@@ -12,8 +12,23 @@ module.exports = {
         border: "#30363d"
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"]
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Helvetica',
+          'Arial',
+          'sans-serif'
+        ],
+        mono: [
+          'SFMono-Regular',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace'
+        ]
       },
       keyframes: {
         fadeIn: {

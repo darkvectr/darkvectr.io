@@ -11,12 +11,6 @@ import Footer from '../components/Footer.astro';
     <meta name="theme-color" content="#0d1117" />
     <title>DarkVectr | Cybersecurity Consulting</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
     <script>
       if (
         localStorage.theme === "dark" ||
@@ -56,6 +50,21 @@ import Footer from '../components/Footer.astro';
         updateIcons();
       });
       updateIcons();
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-fadeIn');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => {
+          observer.observe(el);
+        });
+      });
     </script>
   </body>
 </html>
