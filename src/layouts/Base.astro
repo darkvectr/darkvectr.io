@@ -186,6 +186,31 @@ import Footer from '../components/Footer.astro';
             gyroscope: false
           });
         }
+        function blockDropEffect(duration = 800) {
+          const count = 60;
+          const blocks = [];
+          for (let i = 0; i < count; i++) {
+            const block = document.createElement('div');
+            const size = Math.floor(Math.random() * 40 + 10);
+            block.style.position = 'fixed';
+            block.style.width = block.style.height = size + 'px';
+            block.style.left = Math.random() * window.innerWidth + 'px';
+            block.style.top = Math.random() * window.innerHeight + 'px';
+            block.style.backgroundColor = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},0.6)`;
+            block.style.zIndex = '70';
+            block.style.pointerEvents = 'none';
+            block.style.transition = `all ${duration}ms ease-out`;
+            document.body.appendChild(block);
+            blocks.push(block);
+            setTimeout(() => {
+              block.style.top = window.innerHeight + 'px';
+              block.style.opacity = '0';
+            }, 50);
+          }
+          setTimeout(() => {
+            blocks.forEach(b => b.remove());
+          }, duration + 500);
+        }
 
         // Initialize particles background
         const particlesContainer = document.getElementById('tsparticles');
@@ -299,19 +324,20 @@ import Footer from '../components/Footer.astro';
             root.style.setProperty('--glitch-stripe-thickness', `${Math.floor(Math.random()*6+1)}px`);
             root.style.setProperty('--glitch-stripe-gap', `${Math.floor(Math.random()*12+4)}px`);
             
+            // trigger shake + stripe glitch
             root.classList.add('glitch-shake', 'animate-shake');
             document.documentElement.addEventListener('animationend', () => {
               document.documentElement.classList.remove('animate-shake');
             }, { once: true });
-            // random additional effect: matrix rain or pixelate
+            // random additional effect: matrix rain, pixelate, or block drop
             const extra = Math.random();
-            if (extra < 0.4) {
+            if (extra < 0.33) {
               matrixEffect(1000);
-            } else if (extra < 0.8) {
+            } else if (extra < 0.66) {
               root.classList.add('animate-pixelate');
-              root.addEventListener('animationend', () => {
-                root.classList.remove('animate-pixelate');
-              }, { once: true });
+              root.addEventListener('animationend', () => root.classList.remove('animate-pixelate'), { once: true });
+            } else {
+              blockDropEffect(1000);
             }
             glitchEl.classList.add('animate-glitch');
             glitchEl.addEventListener('animationend', () => {
