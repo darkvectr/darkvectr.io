@@ -83,13 +83,15 @@ import Footer from '../components/Footer.astro';
             max: 15,
             speed: 400,
             glare: true,
-            'max-glare': 0.3
+            'max-glare': 0.3,
+            gyroscope: false
           });
         }
 
         // Initialize particles background
-        if (window.tsParticles) {
-          tsParticles.load('tsparticles', {
+        const particlesContainer = document.getElementById('tsparticles');
+        if (window.tsParticles && particlesContainer) {
+          tsParticles.load(particlesContainer, {
             fpsLimit: 60,
             particles: {
               number: { value: 50 },
