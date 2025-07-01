@@ -5,12 +5,12 @@ import BaseLayout from '../layouts/Base.astro';
 <BaseLayout>
   <section id="hero" class="relative mb-16 text-center overflow-hidden">
     <div id="tsparticles" class="absolute inset-0 z-0"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-accent/50 via-accent/30 to-accent/50 blur-3xl animate-gradient"></div>
-    <div class="absolute top-10 left-1/4 w-40 h-40 bg-accent/20 rounded-full animate-float delay-[0ms]"></div>
-    <div class="absolute top-0 right-1/4 w-56 h-56 bg-accent/30 rounded-full animate-float delay-[2000ms]"></div>
-    <div class="absolute bottom-10 left-1/2 w-64 h-64 bg-accent/10 rounded-full animate-float delay-[4000ms]"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-accent/40 via-accent/20 to-accent/40 blur-3xl animate-gradient"></div>
+    <div class="absolute top-10 left-1/4 w-40 h-40 bg-accent/20 rounded-full animate-float delay-[0ms] parallax-shape" data-speed="30"></div>
+    <div class="absolute top-0 right-1/4 w-56 h-56 bg-accent/30 rounded-full animate-float delay-[2000ms] parallax-shape" data-speed="-20"></div>
+    <div class="absolute bottom-10 left-1/2 w-64 h-64 bg-accent/10 rounded-full animate-float delay-[4000ms] parallax-shape" data-speed="45"></div>
     <div class="relative z-10 px-4 py-20 animate-slideInUp">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accent via-purple-500 to-pink-500 bg-[length:200%] bg-clip-text text-transparent animate-gradientText">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accent/80 via-accent to-accent/80 bg-[length:200%] bg-clip-text text-transparent animate-gradientText">
         Redefining Offensive Security
       </h2>
       <p class="text-subtext max-w-xl mx-auto">
@@ -147,7 +147,7 @@ import BaseLayout from '../layouts/Base.astro';
     </p>
     <a
       href="mailto:hello@darkvectr.io"
-      class="inline-block px-6 py-3 bg-accent text-background font-medium rounded hover:opacity-90 hover:scale-105 transition-transform duration-200 ease-in-out animate-bounce"
+      class="inline-block px-6 py-3 bg-accent text-background font-medium rounded-lg hover:opacity-90 hover:scale-105 transition-transform duration-200 ease-in-out animate-pulse"
     >
       Contact Us
     </a>

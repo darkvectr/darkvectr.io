@@ -8,7 +8,7 @@ import Footer from '../components/Footer.astro';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="DarkVectr - Cybersecurity Consulting for the Bold" />
-    <meta name="theme-color" content="#0d1117" />
+    <meta name="theme-color" content="#121212" />
     <title>DarkVectr | Cybersecurity Consulting</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link
@@ -26,7 +26,23 @@ import Footer from '../components/Footer.astro';
         document.documentElement.classList.remove("dark");
       }
     </script>
-    <style>html { scroll-behavior: smooth; }</style>
+    <style>
+      html { scroll-behavior: smooth; }
+      .parallax-shape { transition: transform 0.2s ease-out; }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(16,185,129,0.2), transparent 70%);
+        pointer-events: none;
+        animation: pulseGradient 6s ease-in-out infinite;
+      }
+      @keyframes pulseGradient {
+        0% { opacity: 0.2; transform: scale(1); }
+        50% { opacity: 0.05; transform: scale(1.2); }
+        100% { opacity: 0.2; transform: scale(1); }
+      }
+    </style>
   </head>
   <body class="bg-background text-foreground font-sans">
     <Header />
@@ -37,23 +53,11 @@ import Footer from '../components/Footer.astro';
     <script>
       const htmlEl = document.documentElement;
       const toggle = document.getElementById("theme-toggle");
-      const iconLight = document.getElementById("theme-icon-light");
       const iconDark = document.getElementById("theme-icon-dark");
-      function updateIcons() {
-        if (htmlEl.classList.contains("dark")) {
-          iconLight.classList.add("hidden");
-          iconDark.classList.remove("hidden");
-        } else {
-          iconLight.classList.remove("hidden");
-          iconDark.classList.add("hidden");
-        }
-      }
       toggle.addEventListener("click", () => {
         htmlEl.classList.toggle("dark");
         localStorage.theme = htmlEl.classList.contains("dark") ? "dark" : "light";
-        updateIcons();
       });
-      updateIcons();
     </script>
     <!-- Particle background and tilt effects -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.min.js"></script>
@@ -95,12 +99,12 @@ import Footer from '../components/Footer.astro';
             fpsLimit: 60,
             particles: {
               number: { value: 50 },
-              color: { value: '#58a6ff' },
+              color: { value: '#10b981' },
               shape: { type: 'circle' },
               opacity: { value: 0.2 },
               size: { value: { min: 1, max: 3 } },
               move: { enable: true, speed: 1, outModes: 'out' },
-              links: { enable: true, distance: 150, color: '#58a6ff', opacity: 0.1, width: 1 }
+              links: { enable: true, distance: 150, color: '#10b981', opacity: 0.1, width: 1 }
             },
             interactivity: {
               detectsOn: 'canvas',
@@ -116,6 +120,21 @@ import Footer from '../components/Footer.astro';
             },
             detectRetina: true,
             background: { color: 'transparent' }
+          });
+        }
+
+        // Parallax movement for hero background shapes
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+          const shapes = heroSection.querySelectorAll('.parallax-shape');
+          heroSection.addEventListener('mousemove', e => {
+            const { width, height, left, top } = heroSection.getBoundingClientRect();
+            const x = ((e.clientX - left) / width - 0.5) * 2;
+            const y = ((e.clientY - top) / height - 0.5) * 2;
+            shapes.forEach(shape => {
+              const speed = parseFloat(shape.dataset.speed) || 0;
+              shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
           });
         }
       });

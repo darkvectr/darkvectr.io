@@ -7,12 +7,12 @@ module.exports = {
         '200%': '200% 200%',
       },
       colors: {
-        background: "#0d1117",
-        surface: "#161b22",
-        foreground: "#c9d1d9",
-        subtext: "#8b949e",
-        accent: "#58a6ff",
-        border: "#30363d"
+        background: "#121212",
+        surface: "#1e1e1e",
+        foreground: "#e0e0e0",
+        subtext: "#9e9e9e",
+        accent: "#10b981",
+        border: "#272727"
       },
       fontFamily: {
         sans: [
